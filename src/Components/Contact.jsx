@@ -5,11 +5,13 @@ export default class Contact extends Component {
     super(props);
     this.state = {
       phone: '',
+      msg: ""
     };
   }
 
   handleChange = (e) => {
     this.setState({ phone: e.target.value });
+    this.setState({msg: ""})
   };
 
   savePhone(e) {
@@ -23,6 +25,7 @@ export default class Contact extends Component {
       this.props.history.push("/finish");
     } else {
       console.log("not valid");
+      this.setState({msg: "please enter a vaild phone number"})
     }
   };
 
@@ -38,9 +41,10 @@ isPhoneValid = (phone) => {
     return (
       <div>
         <h1> Contact</h1>
+        <div>{this.state.msg}</div>
         <input
           type="phone"
-          placeholder="Enter your phone"
+          placeholder="Ente phone x-xxx-xxx-xxxx"
           className="phone"
           // onBlur={this.savePhone}
           value={this.state.phone}
