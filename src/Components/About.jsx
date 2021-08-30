@@ -5,11 +5,13 @@ export default class About extends Component {
     super(props);
     this.state = {
       name: "",
+      msg: ""
     };
   }
 
   handleChange = (e) => {
     this.setState({name: e.target.value})
+    this.setState({msg: ""})
   }
 
   saveName(e) {
@@ -28,6 +30,7 @@ export default class About extends Component {
       this.props.history.push("/contact");
     } else {
       console.log("not valid");
+      this.setState({msg: "please enter a vaild name"})
     }
   };
 
@@ -41,6 +44,7 @@ isValidName = (name) => {
     return (
       <div>
         <h1> About</h1>
+        <div>{this.state.msg}</div>
         <input
           type="text"
           placeholder="Enter your name"
